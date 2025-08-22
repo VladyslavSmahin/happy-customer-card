@@ -27,7 +27,7 @@ export default function MessageForm() {
   };
 
   return (
-    <Card className="bg-gradient-secondary border border-border shadow-card">
+    <Card className="bg-gradient-secondary border border-border shadow-card mx-4 lg:mx-0">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Mail className="h-5 w-5 text-primary" />
@@ -35,11 +35,11 @@ export default function MessageForm() {
         </CardTitle>
       </CardHeader>
       
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <CardContent className="p-4 sm:p-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email отправителя</Label>
+              <Label htmlFor="email" className="text-sm font-medium">Email отправителя</Label>
               <Input
                 id="email"
                 type="email"
@@ -51,7 +51,7 @@ export default function MessageForm() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="target">Целевая аудитория</Label>
+              <Label htmlFor="target" className="text-sm font-medium">Целевая аудитория</Label>
               <Select onValueChange={(value) => setFormData({ ...formData, target: value })}>
                 <SelectTrigger className="bg-background/50 border-border">
                   <SelectValue placeholder="Выберите аудиторию" />
@@ -67,7 +67,7 @@ export default function MessageForm() {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="subject">Тема сообщения</Label>
+            <Label htmlFor="subject" className="text-sm font-medium">Тема сообщения</Label>
             <Input
               id="subject"
               placeholder="Специальное предложение для вас!"
@@ -78,29 +78,29 @@ export default function MessageForm() {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="message">Сообщение</Label>
+            <Label htmlFor="message" className="text-sm font-medium">Сообщение</Label>
             <Textarea
               id="message"
               placeholder="Напишите ваше сообщение клиентам..."
-              rows={6}
+              rows={5}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="bg-background/50 border-border focus:ring-primary resize-none"
             />
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Users className="h-4 w-4" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+              <Users className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>Будет отправлено: ~1,250 клиентам</span>
             </div>
             
             <Button 
               type="submit" 
-              className="bg-gradient-primary hover:opacity-90 shadow-glow"
+              className="bg-gradient-primary hover:opacity-90 shadow-glow w-full sm:w-auto text-sm sm:text-base"
               disabled={!formData.subject || !formData.message}
             >
-              <Send className="h-4 w-4 mr-2" />
+              <Send className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
               Отправить сообщения
             </Button>
           </div>
